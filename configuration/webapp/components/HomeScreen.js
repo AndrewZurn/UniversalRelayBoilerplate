@@ -17,7 +17,7 @@ class HomeScreen extends React.Component
     return ( <div>
       <Card>
         <CardHeader
-          title="Universal Relay Boilerplate"
+          title="SPAC Fusion Editor"
           subtitle={ "Version " + isoVars.npm_package_version }
         />
         <CardText>

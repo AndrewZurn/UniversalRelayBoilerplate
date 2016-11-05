@@ -40,21 +40,7 @@ class Footer extends React.Component
     return (
       <FullWidthSection style={ styles.footer }>
         <p style={ styles.p }>
-          {'Hand crafted with love by the engineers at '}
-          <a style={ styles.a } href="http://codefoundries.com">
-            Code Foundries
-          </a>
-          {' and our awesome '}
-          <a
-            style={ styles.a }
-            href="https://github.com/codefoundries/UniversalRelayBoilerplate/graphs/contributors"
-          >
-            contributors
-          </a>.
-          {' Universal Relay Boilerplate is '}
-          <a style={ styles.a } href="https://github.com/codefoundries/UniversalRelayBoilerplate">
-            available on github
-          </a>.
+          {' SPAC Fusion Editor'}
         </p>
       </FullWidthSection>
     )
