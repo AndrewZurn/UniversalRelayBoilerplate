@@ -29,50 +29,28 @@ class NavMenu extends React.Component
       >
 
         <ListItem
-          primaryText="Ensayo"
+          primaryText="Schedule"
           primaryTogglesNestedList={true}
           nestedItems={ [
-            <ListItem primaryText="View" value="/ensayo" />,
-            <ListItem primaryText="Edit" value="/ensayo/edit" />,
+            <ListItem primaryText="Today" value="/schedule/today" />,
+            <ListItem primaryText="This Week" value={`/schedule/this-week/${getStartOfWeek()}`} />,
+            <ListItem primaryText="Previous Weeks" value="/schedule/previous-weeks" />
           ] }
         />
-        <ListItem
-          primaryText="To Do"
-          primaryTogglesNestedList={true}
-          nestedItems={ [
-            <ListItem primaryText="All" value="/todo" />,
-            <ListItem primaryText="Active" value="/todo/active" />,
-            <ListItem primaryText="Completed" value="/todo/completed" />,
-          ] }
-        />
-        <ListItem
-          primaryText="Translaticiarum"
-          primaryTogglesNestedList={true}
-          nestedItems={ [
-            <ListItem primaryText="Grid" value="/translaticiarum" />,
-            <ListItem primaryText="List" value="/translaticiarum/edit" />,
-          ] }
-        />
-        <ListItem
-          primaryText="Material-UI"
-          primaryTogglesNestedList={true}
-          nestedItems={ [
-            <ListItem primaryText="Home" value="/mui" />,
-            <ListItem primaryText="Library Icons" value="/mui/icons" />,
-            <ListItem primaryText="Country Flags" value="/mui/icons_country_flags" />,
-            <ListItem primaryText="Credit Cards" value="/mui/icons_credit_cards" />,
-          ] }
-        />
-
-        <ListItem
-          primaryText="Misc"
-          primaryTogglesNestedList={true}
-          nestedItems={ nestedItems_Misc }
-        />
+        <ListItem primaryText="Workouts" value="/workouts"/>
+        <ListItem primaryText="Users" value="/users"/>
 
       </SelectableList>
     )
   }
+}
+
+function getStartOfWeek() {
+  var date = new Date();
+  var day = date.getDay() || 7;
+  if( day !== 1 )
+    date.setHours(-24 * (day - 1));
+  return date.toISOString().substring(0, 10);
 }
 
 export default Relay.createContainer( NavMenu, {
