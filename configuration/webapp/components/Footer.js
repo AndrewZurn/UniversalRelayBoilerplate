@@ -1,13 +1,11 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react'
-import Relay from 'react-relay'
-
-import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
-import {LARGE}  from '../../../webapp/scripts/withWidth';
-
-import FullWidthSection from '../../../webapp/components/FullWidthSection'
+import React from "react";
+import Relay from "react-relay";
+import {darkWhite, lightWhite, grey900} from "material-ui/styles/colors";
+import {LARGE} from "../../../webapp/scripts/withWidth";
+import FullWidthSection from "../../../webapp/components/FullWidthSection";
 
 
 const styles = {
@@ -28,11 +26,9 @@ const styles = {
 }
 
 
-class Footer extends React.Component
-{
-  render( )
-  {
-    if( this.props.width == LARGE )
+class Footer extends React.Component {
+  render() {
+    if (this.props.width == LARGE)
       styles.footer.paddingLeft = 256 + 24
     else
       styles.footer.paddingLeft = 24
@@ -47,7 +43,7 @@ class Footer extends React.Component
   }
 }
 
-export default Relay.createContainer( Footer, {
+export default Relay.createContainer(Footer, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {
@@ -55,4 +51,4 @@ export default Relay.createContainer( Footer, {
       }
     `,
   },
-} )
+})

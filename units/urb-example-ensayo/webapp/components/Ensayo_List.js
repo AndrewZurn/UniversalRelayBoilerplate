@@ -1,17 +1,13 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
+import React from "react";
+import Relay from "react-relay";
+import {List} from "material-ui/List";
+import Ensayo_Item from "./Ensayo_Item";
 
-import {List} from 'material-ui/List';
-
-import Ensayo_Item from './Ensayo_Item';
-
-class Ensayo_List extends React.Component
-{
-  renderEnsayos( )
-  {
+class Ensayo_List extends React.Component {
+  renderEnsayos() {
     return this.props.Viewer.Ensayos.edges.map(edge =>
       <Ensayo_Item
         key={edge.node.id}
@@ -21,19 +17,18 @@ class Ensayo_List extends React.Component
     );
   }
 
-  render( )
-  {
+  render() {
     return (
       <div>
         <List>
-          { this.renderEnsayos( ) }
+          { this.renderEnsayos() }
         </List>
       </div>
     );
   }
 }
 
-export default Relay.createContainer( Ensayo_List, {
+export default Relay.createContainer(Ensayo_List, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {

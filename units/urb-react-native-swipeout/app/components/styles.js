@@ -1,6 +1,4 @@
-import {
-  StyleSheet,
-} from 'react-native';
+import {StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
   swipeout: {
@@ -29,8 +27,7 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
   },
-  swipeoutContent: {
-  },
+  swipeoutContent: {},
   colorDelete: {
     backgroundColor: '#fb3d38',
   },

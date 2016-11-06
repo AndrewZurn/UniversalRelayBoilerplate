@@ -1,59 +1,49 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
-
-import IconButton from 'material-ui/IconButton';
-import IconMenu from 'material-ui/IconMenu';
-import {ListItem} from 'material-ui/List';
-import MenuItem from 'material-ui/MenuItem';
-import NavigationMoreVert from 'material-ui/svg-icons/navigation/more-vert';
-
-
-import Ensayo_deleteMutation from '../../relay/Ensayo_deleteMutation';
-import Ensayo_updateMutation from '../../relay/Ensayo_updateMutation';
-
-import Ensayo_Properties from './Ensayo_Properties';
+import React from "react";
+import Relay from "react-relay";
+import IconButton from "material-ui/IconButton";
+import IconMenu from "material-ui/IconMenu";
+import {ListItem} from "material-ui/List";
+import MenuItem from "material-ui/MenuItem";
+import NavigationMoreVert from "material-ui/svg-icons/navigation/more-vert";
+import Ensayo_deleteMutation from "../../relay/Ensayo_deleteMutation";
+import Ensayo_updateMutation from "../../relay/Ensayo_updateMutation";
+import Ensayo_Properties from "./Ensayo_Properties";
 
 
-class Ensayo_Item extends React.Component
-{
+class Ensayo_Item extends React.Component {
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
   };
 
-  _handle_updateHandler_Ensayo = ( Ensayo_properties ) =>
-  {
+  _handle_updateHandler_Ensayo = (Ensayo_properties) => {
     this.context.relay.commitUpdate(
-      new Ensayo_updateMutation( { Ensayo: this.props.Ensayo, ...Ensayo_properties } )
+      new Ensayo_updateMutation({Ensayo: this.props.Ensayo, ...Ensayo_properties})
     );
   };
 
-  _Ensayo_delete( )
-  {
+  _Ensayo_delete() {
     this.context.relay.commitUpdate(
-      new Ensayo_deleteMutation( { Ensayo: this.props.Ensayo, Viewer: this.props.Viewer } )
+      new Ensayo_deleteMutation({Ensayo: this.props.Ensayo, Viewer: this.props.Viewer})
     );
   }
 
-  _handle_onItemTouchTap = ( e, item ) =>
-  {
-    switch( item.ref )
-    {
+  _handle_onItemTouchTap = (e, item) => {
+    switch (item.ref) {
       case 'edit':
-        this.refs.Ensayo_Properties._handle_Open( );
+        this.refs.Ensayo_Properties._handle_Open();
         break;
       case 'delete':
-        this._Ensayo_delete( );
+        this._Ensayo_delete();
         break;
       default:
         break;
     }
   };
 
-  render( )
-  {
+  render() {
     const rightIconMenu = (
       <IconMenu
         iconButtonElement={<IconButton><NavigationMoreVert /></IconButton>}
@@ -82,7 +72,7 @@ class Ensayo_Item extends React.Component
   }
 }
 
-export default Relay.createContainer( Ensayo_Item, {
+export default Relay.createContainer(Ensayo_Item, {
   fragments: {
     Ensayo: () => Relay.QL`
       fragment on Ensayo {
@@ -100,4 +90,4 @@ export default Relay.createContainer( Ensayo_Item, {
       }
     `,
   },
-} );
+});

@@ -1,6 +1,6 @@
 /* @flow weak */
 
-import Relay from 'react-relay';
+import Relay from "react-relay";
 
 export default class ToDo_list_updateMarkAllMutation extends Relay.Mutation {
   static fragments = {
@@ -22,9 +22,11 @@ export default class ToDo_list_updateMarkAllMutation extends Relay.Mutation {
       }
     `,
   };
+
   getMutation() {
     return Relay.QL`mutation{ToDo_list_updateMarkAll}`;
   }
+
   getFatQuery() {
     return Relay.QL`
       fragment on ToDo_list_updateMarkAllPayload {
@@ -35,6 +37,7 @@ export default class ToDo_list_updateMarkAllMutation extends Relay.Mutation {
       }
     `;
   }
+
   getConfigs() {
     return [{
       type: 'FIELDS_CHANGE',
@@ -43,11 +46,13 @@ export default class ToDo_list_updateMarkAllMutation extends Relay.Mutation {
       },
     }];
   }
+
   getVariables() {
     return {
       ToDo_Complete: this.props.ToDo_Complete,
     };
   }
+
   getOptimisticResponse() {
     var ViewerPayload = {id: this.props.Viewer.id};
     if (this.props.ToDos && this.props.ToDos.edges) {

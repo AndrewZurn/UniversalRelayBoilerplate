@@ -1,65 +1,55 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
-
-import IconButton from 'material-ui/IconButton';
-import IconMenu from 'material-ui/IconMenu';
-import {ListItem} from 'material-ui/List';
-import MenuItem from 'material-ui/MenuItem';
-import NavigationMoreVert from 'material-ui/svg-icons/navigation/more-vert';
-
-import { dateFromUTCString, dateUTCToLocal } from '../../../../webapp/scripts/DateTimeHelpers'
-
-import Translaticiarum_deleteMutation from '../../relay/Translaticiarum_deleteMutation';
-import Translaticiarum_updateMutation from '../../relay/Translaticiarum_updateMutation';
-
-import Translaticiarum_Icon from './Translaticiarum_Icon';
-import Translaticiarum_Properties from './Translaticiarum_Properties';
+import React from "react";
+import Relay from "react-relay";
+import IconButton from "material-ui/IconButton";
+import IconMenu from "material-ui/IconMenu";
+import {ListItem} from "material-ui/List";
+import MenuItem from "material-ui/MenuItem";
+import NavigationMoreVert from "material-ui/svg-icons/navigation/more-vert";
+import {dateFromUTCString, dateUTCToLocal} from "../../../../webapp/scripts/DateTimeHelpers";
+import Translaticiarum_deleteMutation from "../../relay/Translaticiarum_deleteMutation";
+import Translaticiarum_updateMutation from "../../relay/Translaticiarum_updateMutation";
+import Translaticiarum_Icon from "./Translaticiarum_Icon";
+import Translaticiarum_Properties from "./Translaticiarum_Properties";
 
 
-class Translaticiarum_Item extends React.Component
-{
+class Translaticiarum_Item extends React.Component {
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
   };
 
-  _handle_updateHandler_Translaticiarum_Properties = ( Translaticiarum_properties ) =>
-  {
+  _handle_updateHandler_Translaticiarum_Properties = (Translaticiarum_properties) => {
     this.context.relay.commitUpdate(
-      new Translaticiarum_updateMutation( { Translaticiarum: this.props.Translaticiarum, ...Translaticiarum_properties } )
+      new Translaticiarum_updateMutation({Translaticiarum: this.props.Translaticiarum, ...Translaticiarum_properties})
     );
   };
 
-  _Translaticiarum_delete( )
-  {
+  _Translaticiarum_delete() {
     this.context.relay.commitUpdate(
-      new Translaticiarum_deleteMutation( { Translaticiarum: this.props.Translaticiarum, Viewer: this.props.Viewer } )
+      new Translaticiarum_deleteMutation({Translaticiarum: this.props.Translaticiarum, Viewer: this.props.Viewer})
     );
   }
 
-  _handle_onItemTouchTap = ( e, item ) =>
-  {
-    switch( item.ref )
-    {
+  _handle_onItemTouchTap = (e, item) => {
+    switch (item.ref) {
       case 'edit':
-        this.refs.Translaticiarum_Properties._handle_Open( );
+        this.refs.Translaticiarum_Properties._handle_Open();
         break;
       case 'delete':
-        this._Translaticiarum_delete( );
+        this._Translaticiarum_delete();
         break;
       default:
         break;
     }
   };
 
-  render( )
-  {
-    const theDate = dateFromUTCString( this.props.Translaticiarum.Translaticiarum_Date );
-    const theTime = dateFromUTCString( this.props.Translaticiarum.Translaticiarum_Time );
+  render() {
+    const theDate = dateFromUTCString(this.props.Translaticiarum.Translaticiarum_Date);
+    const theTime = dateFromUTCString(this.props.Translaticiarum.Translaticiarum_Time);
 
-    const theDateTime = dateUTCToLocal( new Date( theDate.getTime( ) + theTime.getTime( ) ) );
+    const theDateTime = dateUTCToLocal(new Date(theDate.getTime() + theTime.getTime()));
 
     const rightIconMenu = (
       <IconMenu
@@ -90,7 +80,7 @@ class Translaticiarum_Item extends React.Component
   }
 }
 
-export default Relay.createContainer( Translaticiarum_Item, {
+export default Relay.createContainer(Translaticiarum_Item, {
   fragments: {
     Translaticiarum: () => Relay.QL`
       fragment on Translaticiarum {
@@ -108,4 +98,4 @@ export default Relay.createContainer( Translaticiarum_Item, {
       }
     `,
   },
-} );
+});

@@ -1,19 +1,15 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
-
-import {Card, CardHeader, CardText} from 'material-ui/Card';
-
-import { RequiresAuthenticationNotice } from '../../../../units/urb-account-management/webapp/components/RequiresAuthentication.js';
+import React from "react";
+import Relay from "react-relay";
+import {Card, CardHeader, CardText} from "material-ui/Card";
+import {RequiresAuthenticationNotice} from "../../../../units/urb-account-management/webapp/components/RequiresAuthentication.js";
 
 
-class ForceLogin extends React.Component
-{
-  render( )
-  {
-    if( this.props.Viewer.User_IsAnonymous )
+class ForceLogin extends React.Component {
+  render() {
+    if (this.props.Viewer.User_IsAnonymous)
       return <RequiresAuthenticationNotice />; // Anonymous users do not get to have a profile
     else
       return (
@@ -27,10 +23,10 @@ class ForceLogin extends React.Component
           </CardText>
         </Card>
       )
-    }
+  }
 }
 
-export default Relay.createContainer( ForceLogin, {
+export default Relay.createContainer(ForceLogin, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {
@@ -38,4 +34,4 @@ export default Relay.createContainer( ForceLogin, {
       }
     `,
   },
-} );
+});

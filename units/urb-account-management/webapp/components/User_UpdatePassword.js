@@ -1,33 +1,29 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
-
-import {Card, CardHeader, CardText} from 'material-ui/Card';
-import LinearProgress from 'material-ui/LinearProgress';
-import RaisedButton from 'material-ui/RaisedButton';
-import Snackbar from 'material-ui/Snackbar';
-import TextField from 'material-ui/TextField';
-
+import React from "react";
+import Relay from "react-relay";
+import {Card, CardHeader, CardText} from "material-ui/Card";
+import LinearProgress from "material-ui/LinearProgress";
+import RaisedButton from "material-ui/RaisedButton";
+import Snackbar from "material-ui/Snackbar";
+import TextField from "material-ui/TextField";
 import {
   AccountPasswordStrengthMin,
-  AccountPasswordStrengthGood,
-} from '../../../../configuration/units/urb-account-management/accountNameAndPasswordRequirements';
-import { RequiresAuthenticationNotice } from './RequiresAuthentication.js';
-import scorePassword from '../../../../configuration/units/urb-account-management/scripts/scorePassword';
-import Viewer_updatePasswordMutation from '../../relay/Viewer_updatePasswordMutation';
+  AccountPasswordStrengthGood
+} from "../../../../configuration/units/urb-account-management/accountNameAndPasswordRequirements";
+import {RequiresAuthenticationNotice} from "./RequiresAuthentication.js";
+import scorePassword from "../../../../configuration/units/urb-account-management/scripts/scorePassword";
+import Viewer_updatePasswordMutation from "../../relay/Viewer_updatePasswordMutation";
 
 
-class User_Properties extends React.Component
-{
+class User_Properties extends React.Component {
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
   };
 
-  constructor( props, context )
-  {
-    super( props, context );
+  constructor(props, context) {
+    super(props, context);
 
     this.state = {
       User_AccountPassword_Current: "",
@@ -42,65 +38,59 @@ class User_Properties extends React.Component
     };
   }
 
-  _handle_Close_Snackbar = () =>
-  {
-    this.setState( { SnackbarOpen: false } );
+  _handle_Close_Snackbar = () => {
+    this.setState({SnackbarOpen: false});
   };
 
-  _handle_onChange_User_AccountPassword_Current = ( event ) =>
-  {
-    this.setState( { User_AccountPassword_Current: event.target.value } );
+  _handle_onChange_User_AccountPassword_Current = (event) => {
+    this.setState({User_AccountPassword_Current: event.target.value});
 
-    this.validateInputs( event.target.value, this.state.User_AccountPassword, this.state.User_AccountPasswordConfirmation );
+    this.validateInputs(event.target.value, this.state.User_AccountPassword, this.state.User_AccountPasswordConfirmation);
   };
 
-  _handle_onChange_User_AccountPassword = ( event ) =>
-  {
-    const passwordScore = scorePassword( event.target.value );
+  _handle_onChange_User_AccountPassword = (event) => {
+    const passwordScore = scorePassword(event.target.value);
 
-    this.setState( {
+    this.setState({
       User_AccountPassword: event.target.value,
       User_AccountPasswordStrength: passwordScore,
-    } );
+    });
 
-    this.validateInputs( this.state.User_AccountPassword_Current, event.target.value, this.state.User_AccountPasswordConfirmation );
+    this.validateInputs(this.state.User_AccountPassword_Current, event.target.value, this.state.User_AccountPasswordConfirmation);
   };
 
-  _handle_onChange_User_AccountPasswordConfirmation = ( event ) =>
-  {
-    this.setState( { User_AccountPasswordConfirmation: event.target.value } );
+  _handle_onChange_User_AccountPasswordConfirmation = (event) => {
+    this.setState({User_AccountPasswordConfirmation: event.target.value});
 
-    this.validateInputs( this.state.User_AccountPassword_Current, this.state.User_AccountPassword, event.target.value );
+    this.validateInputs(this.state.User_AccountPassword_Current, this.state.User_AccountPassword, event.target.value);
   };
 
-  validateInputs( currentPassword, password, passwordConfirmation)
-  {
-    this.setState( { User_AccountPassword_CurrentError:
-      currentPassword == "" ?
+  validateInputs(currentPassword, password, passwordConfirmation) {
+    this.setState({
+      User_AccountPassword_CurrentError: currentPassword == "" ?
         "Enter current password"
         : ""
-    } );
+    });
 
-    this.setState( { User_AccountPasswordError:
-      password == "" ?
+    this.setState({
+      User_AccountPasswordError: password == "" ?
         "Password can not be empty"
         : ""
-    } );
+    });
 
-    this.setState( { User_AccountPasswordConfirmationError:
-      password != passwordConfirmation ?
+    this.setState({
+      User_AccountPasswordConfirmationError: password != passwordConfirmation ?
         "Passwords do not match"
         : ""
-    } );
+    });
 
     // Close snackbar since user is obviously typing
-    this.setState( { SnackbarOpen: false } );
+    this.setState({SnackbarOpen: false});
   }
 
-  _handleUpdate = ( ) =>
-  {
+  _handleUpdate = () => {
     var onFailure = () => {
-      this.setState( {
+      this.setState({
         SnackbarOpen: true,
         SnackbarMessage: "Failed to update password",
         User_AccountPassword_Current: "",
@@ -110,14 +100,13 @@ class User_Properties extends React.Component
         User_AccountPasswordConfirmation: "",
         User_AccountPasswordConfirmationError: "Confirm password",
         User_AccountPasswordStrength: 0,
-      } );
+      });
     };
 
-    var onSuccess = (response) =>
-    {
+    var onSuccess = (response) => {
       const ErrorMessage = response.Viewer_updatePassword.ErrorMessage;
 
-      this.setState( {
+      this.setState({
         SnackbarOpen: true,
         SnackbarMessage: ErrorMessage.length > 0 ? "Failed to update password: " + ErrorMessage : "Password updated successfully",
         User_AccountPassword_Current: "",
@@ -127,22 +116,21 @@ class User_Properties extends React.Component
         User_AccountPasswordConfirmation: "",
         User_AccountPasswordConfirmationError: "Confirm password",
         User_AccountPasswordStrength: 0,
-      } );
+      });
     };
 
     this.context.relay.commitUpdate(
-      new Viewer_updatePasswordMutation( {
-        Viewer:                       this.props.Viewer,
+      new Viewer_updatePasswordMutation({
+        Viewer: this.props.Viewer,
         User_AccountPassword_Current: this.state.User_AccountPassword_Current,
-        User_AccountPassword:         this.state.User_AccountPassword,
-      } ),
+        User_AccountPassword: this.state.User_AccountPassword,
+      }),
       {onSuccess, onFailure}
     );
   };
 
-  render( )
-  {
-    if( this.props.Viewer.User_IsAnonymous )
+  render() {
+    if (this.props.Viewer.User_IsAnonymous)
       return <RequiresAuthenticationNotice />; // Anonymous users do not get to have a password
     else
       return (
@@ -216,13 +204,13 @@ class User_Properties extends React.Component
   }
 }
 
-export default Relay.createContainer( User_Properties, {
+export default Relay.createContainer(User_Properties, {
   fragments: {
-    Viewer: ( ) => Relay.QL`
+    Viewer: () => Relay.QL`
       fragment on Viewer{
         User_IsAnonymous,
         ${Viewer_updatePasswordMutation.getFragment('Viewer')},
       }
     `,
   }
-} );
+});

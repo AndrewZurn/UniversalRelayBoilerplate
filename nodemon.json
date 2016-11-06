@@ -1,3 +1,10 @@
 {
-    "ignore": ["android/*", "app/*", "build/*", "ios/*", "public/*", "**/app/*"] 
+  "ignore": [
+    "android/*",
+    "app/*",
+    "build/*",
+    "ios/*",
+    "public/*",
+    "**/app/*"
+  ]
 }

@@ -1,25 +1,21 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react'
-import Relay from 'react-relay'
+import React from "react";
+import Relay from "react-relay";
+import {List, ListItem, makeSelectable} from "material-ui/List";
 
-import {List, ListItem, makeSelectable} from 'material-ui/List'
+const SelectableList = makeSelectable(List)
 
-const SelectableList = makeSelectable( List )
-
-class NavMenu extends React.Component
-{
-  render( )
-  {
+class NavMenu extends React.Component {
+  render() {
     let nestedItems_Misc = [
-      <ListItem primaryText="Home" value="/" />,
-      <ListItem primaryText="Compendium" value="/compendium" />,
+      <ListItem primaryText="Home" value="/"/>,
+      <ListItem primaryText="Compendium" value="/compendium"/>,
     ]
-    if( ! this.props.Viewer.User_IsAnonymous )
-    {
-      nestedItems_Misc.push( <ListItem primaryText="User Profile" value="/user" /> )
-      nestedItems_Misc.push( <ListItem primaryText="Force Login" value="/force_login" /> )
+    if (!this.props.Viewer.User_IsAnonymous) {
+      nestedItems_Misc.push(<ListItem primaryText="User Profile" value="/user"/>)
+      nestedItems_Misc.push(<ListItem primaryText="Force Login" value="/force_login"/>)
     }
 
     return (
@@ -48,12 +44,12 @@ class NavMenu extends React.Component
 function getStartOfWeek() {
   var date = new Date();
   var day = date.getDay() || 7;
-  if( day !== 1 )
+  if (day !== 1)
     date.setHours(-24 * (day - 1));
   return date.toISOString().substring(0, 10);
 }
 
-export default Relay.createContainer( NavMenu, {
+export default Relay.createContainer(NavMenu, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {
@@ -61,4 +57,4 @@ export default Relay.createContainer( NavMenu, {
       }
     `,
   },
-} )
+})

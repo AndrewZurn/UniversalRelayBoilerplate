@@ -1,174 +1,153 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
-
-import {Card, CardHeader, CardText} from 'material-ui/Card';
-import Checkbox from 'material-ui/Checkbox';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-import SelectField from 'material-ui/SelectField';
-import TextField from 'material-ui/TextField';
-
-import Compendium_updateMutation from '../../relay/Compendium_updateMutation';
+import React from "react";
+import Relay from "react-relay";
+import {Card, CardHeader, CardText} from "material-ui/Card";
+import Checkbox from "material-ui/Checkbox";
+import MenuItem from "material-ui/MenuItem";
+import RaisedButton from "material-ui/RaisedButton";
+import SelectField from "material-ui/SelectField";
+import TextField from "material-ui/TextField";
+import Compendium_updateMutation from "../../relay/Compendium_updateMutation";
 
 
-class Compendium extends React.Component
-{
+class Compendium extends React.Component {
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
   };
 
-  constructor( props, context )
-  {
-    super( props, context );
+  constructor(props, context) {
+    super(props, context);
 
-    const node = this.props.Viewer.compendiums.edges[ 0 ].node;
+    const node = this.props.Viewer.compendiums.edges[0].node;
 
     this.state = {
-      Compendium_RangedNumber_error:      "",
-      Compendium_FirstTextInput:          node.Compendium_FirstTextInput,
-      Compendium_RangedNumber:            node.Compendium_RangedNumber,
-      Compendium_Excitement:              node.Compendium_Excitement,
-      Compendium_FollowUpQuestion:        node.Compendium_FollowUpQuestion,
-      Compendium_FavoriteMammal:          node.Compendium_FavoriteMammal,
+      Compendium_RangedNumber_error: "",
+      Compendium_FirstTextInput: node.Compendium_FirstTextInput,
+      Compendium_RangedNumber: node.Compendium_RangedNumber,
+      Compendium_Excitement: node.Compendium_Excitement,
+      Compendium_FollowUpQuestion: node.Compendium_FollowUpQuestion,
+      Compendium_FavoriteMammal: node.Compendium_FavoriteMammal,
       Compendium_FavoriteMammalOtherText: node.Compendium_FavoriteMammalOtherText,
-      Compendium_LastText:                node.Compendium_LastText,
-      Compendium_LikedSunset_Ocean:       node.Compendium_LikedSunset_Ocean,
-      Compendium_LikedSunset_Lake:        node.Compendium_LikedSunset_Lake,
-      Compendium_LikedSunset_Mountains:   node.Compendium_LikedSunset_Mountains,
-      Compendium_LikedSunset_Plains:      node.Compendium_LikedSunset_Plains,
-      Compendium_LikedSunset_Purple:      node.Compendium_LikedSunset_Purple,
-      Compendium_LikedSunset_Green:       node.Compendium_LikedSunset_Green,
-      Compendium_LikedSunset_Other:       node.Compendium_LikedSunset_Other,
-      Compendium_LikedSunset_OtherText:   node.Compendium_LikedSunset_OtherText,
+      Compendium_LastText: node.Compendium_LastText,
+      Compendium_LikedSunset_Ocean: node.Compendium_LikedSunset_Ocean,
+      Compendium_LikedSunset_Lake: node.Compendium_LikedSunset_Lake,
+      Compendium_LikedSunset_Mountains: node.Compendium_LikedSunset_Mountains,
+      Compendium_LikedSunset_Plains: node.Compendium_LikedSunset_Plains,
+      Compendium_LikedSunset_Purple: node.Compendium_LikedSunset_Purple,
+      Compendium_LikedSunset_Green: node.Compendium_LikedSunset_Green,
+      Compendium_LikedSunset_Other: node.Compendium_LikedSunset_Other,
+      Compendium_LikedSunset_OtherText: node.Compendium_LikedSunset_OtherText,
     };
   }
 
-  _handleUpdate = ( Compendium ) =>
-  {
+  _handleUpdate = (Compendium) => {
     this.context.relay.commitUpdate(
-      new Compendium_updateMutation( {
-        Compendium:                         Compendium,
-        Compendium_FirstTextInput:          this.state.Compendium_FirstTextInput,
-        Compendium_RangedNumber:            this.state.Compendium_RangedNumber,
-        Compendium_Excitement:              this.state.Compendium_Excitement,
-        Compendium_FollowUpQuestion:        this.state.Compendium_FollowUpQuestion,
-        Compendium_FavoriteMammal:          this.state.Compendium_FavoriteMammal,
+      new Compendium_updateMutation({
+        Compendium: Compendium,
+        Compendium_FirstTextInput: this.state.Compendium_FirstTextInput,
+        Compendium_RangedNumber: this.state.Compendium_RangedNumber,
+        Compendium_Excitement: this.state.Compendium_Excitement,
+        Compendium_FollowUpQuestion: this.state.Compendium_FollowUpQuestion,
+        Compendium_FavoriteMammal: this.state.Compendium_FavoriteMammal,
         Compendium_FavoriteMammalOtherText: this.state.Compendium_FavoriteMammalOtherText,
-        Compendium_LastText:                this.state.Compendium_LastText,
-        Compendium_LikedSunset_Ocean:       this.state.Compendium_LikedSunset_Ocean,
-        Compendium_LikedSunset_Lake:        this.state.Compendium_LikedSunset_Lake,
-        Compendium_LikedSunset_Mountains:   this.state.Compendium_LikedSunset_Mountains,
-        Compendium_LikedSunset_Plains:      this.state.Compendium_LikedSunset_Plains,
-        Compendium_LikedSunset_Purple:      this.state.Compendium_LikedSunset_Purple,
-        Compendium_LikedSunset_Green:       this.state.Compendium_LikedSunset_Green,
-        Compendium_LikedSunset_Other:       this.state.Compendium_LikedSunset_Other,
-        Compendium_LikedSunset_OtherText:   this.state.Compendium_LikedSunset_OtherText,
-      } )
+        Compendium_LastText: this.state.Compendium_LastText,
+        Compendium_LikedSunset_Ocean: this.state.Compendium_LikedSunset_Ocean,
+        Compendium_LikedSunset_Lake: this.state.Compendium_LikedSunset_Lake,
+        Compendium_LikedSunset_Mountains: this.state.Compendium_LikedSunset_Mountains,
+        Compendium_LikedSunset_Plains: this.state.Compendium_LikedSunset_Plains,
+        Compendium_LikedSunset_Purple: this.state.Compendium_LikedSunset_Purple,
+        Compendium_LikedSunset_Green: this.state.Compendium_LikedSunset_Green,
+        Compendium_LikedSunset_Other: this.state.Compendium_LikedSunset_Other,
+        Compendium_LikedSunset_OtherText: this.state.Compendium_LikedSunset_OtherText,
+      })
     );
   };
 
-  _handle_onChange_Compendium_FirstTextInput = ( event ) =>
-  {
-      this.setState( { Compendium_FirstTextInput: event.target.value } );
+  _handle_onChange_Compendium_FirstTextInput = (event) => {
+    this.setState({Compendium_FirstTextInput: event.target.value});
   };
 
-  _handle_onChange_Compendium_RangedNumber = ( event ) =>
-  {
+  _handle_onChange_Compendium_RangedNumber = (event) => {
     const value = event.target.value;
-    let valueInt = parseInt( value, 10 );
+    let valueInt = parseInt(value, 10);
 
-    if( isNaN( valueInt ) )
+    if (isNaN(valueInt))
       valueInt = 0;
 
-    this.setState( { Compendium_RangedNumber: valueInt } );
+    this.setState({Compendium_RangedNumber: valueInt});
 
     let errorText = "Enter a number between 18 and 65";
 
-    if( value == valueInt )
-      if( valueInt >= 18 && valueInt <= 65 )
+    if (value == valueInt)
+      if (valueInt >= 18 && valueInt <= 65)
         errorText = "";
 
-    this.setState( { Compendium_RangedNumber_error: errorText } );
+    this.setState({Compendium_RangedNumber_error: errorText});
   };
 
-  _handle_onChange_Compendium_Excitement = ( event, index, value ) =>
-  {
-    this.setState( { Compendium_Excitement: value } );
+  _handle_onChange_Compendium_Excitement = (event, index, value) => {
+    this.setState({Compendium_Excitement: value});
   };
 
-  _handle_onChange_Compendium_LastText = ( event ) =>
-  {
-    this.setState( { Compendium_LastText: event.target.value } );
+  _handle_onChange_Compendium_LastText = (event) => {
+    this.setState({Compendium_LastText: event.target.value});
   };
 
-  _handle_onChange_Compendium_FollowUpQuestion = ( event ) =>
-  {
-    this.setState( { Compendium_FollowUpQuestion: event.target.value } );
+  _handle_onChange_Compendium_FollowUpQuestion = (event) => {
+    this.setState({Compendium_FollowUpQuestion: event.target.value});
   };
 
-  _handle_onChange_Compendium_FavoriteMammal = ( event, index, value ) =>
-  {
-    this.setState( { Compendium_FavoriteMammal: value } );
+  _handle_onChange_Compendium_FavoriteMammal = (event, index, value) => {
+    this.setState({Compendium_FavoriteMammal: value});
   };
 
-  _handle_onChange_Compendium_FavoriteMammalOtherText = ( event ) =>
-  {
-    this.setState( { Compendium_FavoriteMammalOtherText: event.target.value } );
+  _handle_onChange_Compendium_FavoriteMammalOtherText = (event) => {
+    this.setState({Compendium_FavoriteMammalOtherText: event.target.value});
   };
 
-  _handle_onChange_Compendium_LikedSunset_Ocean = ( event, value ) =>
-  {
-    this.setState( { Compendium_LikedSunset_Ocean: value } );
+  _handle_onChange_Compendium_LikedSunset_Ocean = (event, value) => {
+    this.setState({Compendium_LikedSunset_Ocean: value});
   };
 
-  _handle_onChange_Compendium_LikedSunset = ( event, value ) =>
-  {
-    this.setState( { Compendium_LikedSunset_Lake: value } );
+  _handle_onChange_Compendium_LikedSunset = (event, value) => {
+    this.setState({Compendium_LikedSunset_Lake: value});
   };
 
-  _handle_onChange_Compendium_LikedSunset_Mountains = ( event, value ) =>
-  {
-    this.setState( { Compendium_LikedSunset_Mountains: value } );
+  _handle_onChange_Compendium_LikedSunset_Mountains = (event, value) => {
+    this.setState({Compendium_LikedSunset_Mountains: value});
   };
 
-  _handle_onChange_Compendium_LikedSunset_Plains = ( event, value ) =>
-  {
-    this.setState( { Compendium_LikedSunset_Plains: value } );
+  _handle_onChange_Compendium_LikedSunset_Plains = (event, value) => {
+    this.setState({Compendium_LikedSunset_Plains: value});
   };
 
-  _handle_onChange_Compendium_LikedSunset_Purple = ( event, value ) =>
-  {
-    this.setState( { Compendium_LikedSunset_Purple: value } );
+  _handle_onChange_Compendium_LikedSunset_Purple = (event, value) => {
+    this.setState({Compendium_LikedSunset_Purple: value});
   };
 
-  _handle_onChange_Compendium_LikedSunset_Green = ( event, value ) =>
-  {
-    this.setState( { Compendium_LikedSunset_Green: value } );
+  _handle_onChange_Compendium_LikedSunset_Green = (event, value) => {
+    this.setState({Compendium_LikedSunset_Green: value});
   };
 
-  _handle_onChange_Compendium_LikedSunset_Other = ( event, value ) =>
-  {
-    this.setState( { Compendium_LikedSunset_Other: value } );
+  _handle_onChange_Compendium_LikedSunset_Other = (event, value) => {
+    this.setState({Compendium_LikedSunset_Other: value});
   };
 
-  _handle_onChange_Compendium_LikedSunset_OtherText = ( event ) =>
-  {
-    this.setState( { Compendium_LikedSunset_OtherText: event.target.value } );
+  _handle_onChange_Compendium_LikedSunset_OtherText = (event) => {
+    this.setState({Compendium_LikedSunset_OtherText: event.target.value});
   };
 
-  render( )
-  {
+  render() {
     // Determine error text, since we already have the errors in state
     let formErrorText = "";
-    if(
+    if (
       this.state.Compendium_RangedNumber_error != ""
     )
       formErrorText = "There are errors";
 
-    const edge = this.props.Viewer.compendiums.edges[ 0 ];
+    const edge = this.props.Viewer.compendiums.edges[0];
 
     return (
       <Card key={ edge.node.id }>
@@ -203,11 +182,11 @@ class Compendium extends React.Component
               <MenuItem value={4} primaryText="Other"/>
             </SelectField>
             { ( this.state.Compendium_FavoriteMammal != 4 ) ||
-              <TextField
-                value={ this.state.Compendium_FavoriteMammalOtherText }
-                fullWidth={ true }
-                onChange={ this._handle_onChange_Compendium_FavoriteMammalOtherText }
-              />
+            <TextField
+              value={ this.state.Compendium_FavoriteMammalOtherText }
+              fullWidth={ true }
+              onChange={ this._handle_onChange_Compendium_FavoriteMammalOtherText }
+            />
             }
             <TextField
               value={ this.state.Compendium_FollowUpQuestion }
@@ -274,12 +253,12 @@ class Compendium extends React.Component
               defaultChecked={ this.state.Compendium_LikedSunset_Other }
               onCheck={ this._handle_onChange_Compendium_LikedSunset_Other }
             />
-            { ( ! this.state.Compendium_LikedSunset_Other ) ||
-              <TextField
-                value={ this.state.Compendium_LikedSunset_OtherText }
-                fullWidth={ true }
-                onChange={ this._handle_onChange_Compendium_LikedSunset_OtherText }
-              />
+            { ( !this.state.Compendium_LikedSunset_Other ) ||
+            <TextField
+              value={ this.state.Compendium_LikedSunset_OtherText }
+              fullWidth={ true }
+              onChange={ this._handle_onChange_Compendium_LikedSunset_OtherText }
+            />
             }
             <div>
               <RaisedButton
@@ -296,9 +275,9 @@ class Compendium extends React.Component
   }
 }
 
-export default Relay.createContainer( Compendium, {
+export default Relay.createContainer(Compendium, {
   fragments: {
-    Viewer: ( ) => Relay.QL`
+    Viewer: () => Relay.QL`
       fragment on Viewer {
         compendiums( first: 1 ){
           edges {

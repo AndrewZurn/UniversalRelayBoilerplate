@@ -1,7 +1,4 @@
-import React, {
-  PropTypes,
-} from 'react';
-
+import React, {PropTypes} from "react";
 import {
   TouchableWithoutFeedback,
   TouchableNativeFeedback,
@@ -9,8 +6,8 @@ import {
   Text,
   StyleSheet,
   Platform,
-  View,
-} from 'react-native';
+  View
+} from "react-native";
 
 const styles = StyleSheet.create({
   button: {
@@ -43,7 +40,7 @@ const NativeButton = React.createClass({
     isAndroid: (Platform.OS === 'android'),
   },
 
-  getDefaultProps: function() {
+  getDefaultProps: function () {
     return {
       textStyle: null,
       disabledStyle: null,
@@ -51,7 +48,7 @@ const NativeButton = React.createClass({
     };
   },
 
-  _renderText: function() {
+  _renderText: function () {
     // If children is not a string don't wrapp it in a Text component
     if (typeof this.props.children !== 'string') {
       return this.props.children;
@@ -64,7 +61,7 @@ const NativeButton = React.createClass({
     );
   },
 
-  render: function() {
+  render: function () {
     const disabledStyle = this.props.disabled ? (this.props.disabledStyle || styles.opacity) : {};
 
     // Extract Button props

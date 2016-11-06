@@ -1,5 +1,8 @@
 {
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "env": {
     "browser": true,
     "node": true
@@ -20,7 +23,14 @@
     "Promise": true
   },
   "rules": {
-    no-console: 0,
-    comma-dangle: [2, "only-multiline"]
+    no
+    -
+    console: 0,
+    comma
+    -
+    dangle: [
+      2,
+      "only-multiline"
+    ]
   }
 }

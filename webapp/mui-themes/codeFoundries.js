@@ -15,8 +15,8 @@ import {
   indigo400,
   redA700,
   white
-} from 'material-ui/styles/colors';
-import {fade} from 'material-ui/utils/colorManipulator';
+} from "material-ui/styles/colors";
+import {fade} from "material-ui/utils/colorManipulator";
 
 export default {
   spacing: {
@@ -44,9 +44,9 @@ export default {
     alternateTextColor: white,
     canvasColor: white,
     borderColor: grey300,
-    disabledColor: fade( darkBlack, 0.3 ),
+    disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: indigo300,
-    clockCircleColor: fade( darkBlack, 0.07 ),
+    clockCircleColor: fade(darkBlack, 0.07),
     shadowColor: fullBlack,
   },
   avatar: {

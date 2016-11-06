@@ -1,5 +1,4 @@
-export default function( )
-{
+export default function () {
   return {
     UserToken2: '',
     User_AccountName: '',

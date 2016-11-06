@@ -1,6 +1,6 @@
 /* @flow weak */
 
-import Relay from 'react-relay';
+import Relay from "react-relay";
 
 export default class Translaticiarum_deleteMutation extends Relay.Mutation {
   static fragments = {
@@ -15,9 +15,11 @@ export default class Translaticiarum_deleteMutation extends Relay.Mutation {
       }
     `,
   };
+
   getMutation() {
     return Relay.QL`mutation{Translaticiarum_delete}`;
   }
+
   getFatQuery() {
     return Relay.QL`
       fragment on Translaticiarum_deletePayload {
@@ -28,6 +30,7 @@ export default class Translaticiarum_deleteMutation extends Relay.Mutation {
       }
     `;
   }
+
   getConfigs() {
     return [{
       type: 'NODE_DELETE',
@@ -37,11 +40,13 @@ export default class Translaticiarum_deleteMutation extends Relay.Mutation {
       deletedIDFieldName: 'deletedTranslaticiarumId',
     }];
   }
+
   getVariables() {
     return {
       id: this.props.Translaticiarum.id,
     };
   }
+
   getOptimisticResponse() {
     return {
       deletedTranslaticiarumId: this.props.Translaticiarum.id,

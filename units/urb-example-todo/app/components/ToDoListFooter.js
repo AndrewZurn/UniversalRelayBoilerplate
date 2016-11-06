@@ -1,21 +1,16 @@
 /* @flow weak */
 'use strict';
 
-import Relay from 'react-relay';
-import React, {
-  PropTypes,
-} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import Relay from "react-relay";
+import React, {PropTypes} from "react";
+import {StyleSheet, Text, View} from "react-native";
 
 class ToDoListFooter extends React.Component {
   static propTypes = {
     status: PropTypes.oneOf(['active', 'any', 'completed']).isRequired,
     style: View.propTypes.style,
   };
+
   constructor(props, context) {
     super(props, context);
   }

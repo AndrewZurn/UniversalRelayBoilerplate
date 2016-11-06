@@ -1,6 +1,6 @@
 /* @flow weak */
 
-import Relay from 'react-relay';
+import Relay from "react-relay";
 
 export default class ToDo_updateStatusMutation extends Relay.Mutation {
   static fragments = {
@@ -17,9 +17,11 @@ export default class ToDo_updateStatusMutation extends Relay.Mutation {
       }
     `,
   };
+
   getMutation() {
     return Relay.QL`mutation{ToDo_updateStatus}`;
   }
+
   getFatQuery() {
     return Relay.QL`
       fragment on ToDo_updateStatusPayload {
@@ -33,6 +35,7 @@ export default class ToDo_updateStatusMutation extends Relay.Mutation {
       }
     `;
   }
+
   getConfigs() {
     return [{
       type: 'FIELDS_CHANGE',
@@ -42,18 +45,20 @@ export default class ToDo_updateStatusMutation extends Relay.Mutation {
       },
     }];
   }
+
   getVariables() {
     return {
       ToDo_Complete: this.props.ToDo_Complete,
       id: this.props.ToDo.id,
     };
   }
+
   getOptimisticResponse() {
     var ViewerPayload = {id: this.props.Viewer.id};
     if (this.props.Viewer.ToDo_CompletedCount != null) {
       ViewerPayload.ToDo_CompletedCount = this.props.ToDo_Complete ?
-        this.props.Viewer.ToDo_CompletedCount + 1 :
-        this.props.Viewer.ToDo_CompletedCount - 1;
+      this.props.Viewer.ToDo_CompletedCount + 1 :
+      this.props.Viewer.ToDo_CompletedCount - 1;
     }
     return {
       ToDo: {

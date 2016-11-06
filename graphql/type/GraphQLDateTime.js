@@ -1,18 +1,17 @@
 /* @flow weak */
 
-import { GraphQLScalarType } from 'graphql'
-import { GraphQLError } from 'graphql/error'
-import { Kind } from 'graphql/language'
+import {GraphQLScalarType} from "graphql";
+import {GraphQLError} from "graphql/error";
+import {Kind} from "graphql/language";
 
 // The code in this file is largely borrowed from:
 // https://github.com/soundtrackyourbrand/graphql-custom-datetype/blob/master/datetype.js
 
-function coerceDate( value )
-{
-  value = new Date( value );
+function coerceDate(value) {
+  value = new Date(value);
   if (!(value instanceof Date))
-    // Is this how you raise a 'field error'?
-    throw new Error('Field error: value is not an instance of Date, value =' + JSON.stringify( value ) )
+  // Is this how you raise a 'field error'?
+    throw new Error('Field error: value is not an instance of Date, value =' + JSON.stringify(value))
 
   if (isNaN(value.getTime()))
     throw new Error('Field error: value is an invalid Date')
@@ -20,8 +19,7 @@ function coerceDate( value )
   return value.toJSON()
 }
 
-function parseLiteral( ast )
-{
+function parseLiteral(ast) {
   if (ast.kind !== Kind.STRING)
     throw new GraphQLError('Query error: Can only parse strings to dates but got a: ' + ast.kind, [ast])
 
@@ -35,10 +33,10 @@ function parseLiteral( ast )
   return result
 }
 
-export default new GraphQLScalarType( {
+export default new GraphQLScalarType({
   name: 'DateTime',
   description: 'Scalar type for storing date-time information',
   serialize: coerceDate,
   parseValue: coerceDate,
   parseLiteral: parseLiteral,
-} )
+})

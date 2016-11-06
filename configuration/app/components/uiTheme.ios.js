@@ -1,20 +1,16 @@
-import deepmerge from 'deepmerge'
-
-import uiThemeCommon from './uiThemeCommon'
+import deepmerge from "deepmerge";
+import uiThemeCommon from "./uiThemeCommon";
 
 
 const uiThemePlatformSpecific = {
-  dimensions:
-  {
+  dimensions: {
     commonLineHeight: 44,
     commonLinePaddingLeft: 15,
     commonLinePaddingRight: 15,
     commonLineSeparatorPaddingLeft: 15,
   },
-  line:
-  {
-    leftImageStyle:
-    {
+  line: {
+    leftImageStyle: {
       marginLeft: 15,
       // marginRight: 15,
       // marginTop: 7,
@@ -25,4 +21,4 @@ const uiThemePlatformSpecific = {
   }
 }
 
-export default deepmerge( uiThemeCommon, uiThemePlatformSpecific )
+export default deepmerge(uiThemeCommon, uiThemePlatformSpecific)

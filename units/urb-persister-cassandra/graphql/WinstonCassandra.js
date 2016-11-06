@@ -14,7 +14,7 @@ var defaultOptions = {
   name: 'cassandra'
 };
 
-function Cassandra (options) {
+function Cassandra(options) {
   if (!options) {
     throw new Error('Transport options is required');
   }

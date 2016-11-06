@@ -1,6 +1,6 @@
 /* @flow weak */
 
-import Relay from 'react-relay';
+import Relay from "react-relay";
 
 export default class Translaticiarum_addMutation extends Relay.Mutation {
   static fragments = {
@@ -10,9 +10,11 @@ export default class Translaticiarum_addMutation extends Relay.Mutation {
       }
     `,
   };
+
   getMutation() {
     return Relay.QL`mutation{Translaticiarum_add}`;
   }
+
   getFatQuery() {
     return Relay.QL`
       fragment on Translaticiarum_addPayload {
@@ -23,6 +25,7 @@ export default class Translaticiarum_addMutation extends Relay.Mutation {
       }
     `;
   }
+
   getConfigs() {
     return [{
       type: 'RANGE_ADD',
@@ -35,6 +38,7 @@ export default class Translaticiarum_addMutation extends Relay.Mutation {
       },
     }];
   }
+
   getVariables() {
     return {
       Translaticiarum_Type: this.props.Translaticiarum_Type,
@@ -42,6 +46,7 @@ export default class Translaticiarum_addMutation extends Relay.Mutation {
       Translaticiarum_Time: this.props.Translaticiarum_Time,
     };
   }
+
   getOptimisticResponse() {
     return {
       TranslaticiarumsEdge: {

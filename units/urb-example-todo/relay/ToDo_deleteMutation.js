@@ -1,6 +1,6 @@
 /* @flow weak */
 
-import Relay from 'react-relay';
+import Relay from "react-relay";
 
 export default class ToDo_deleteMutation extends Relay.Mutation {
   static fragments = {
@@ -20,9 +20,11 @@ export default class ToDo_deleteMutation extends Relay.Mutation {
       }
     `,
   };
+
   getMutation() {
     return Relay.QL`mutation{ToDo_delete}`;
   }
+
   getFatQuery() {
     return Relay.QL`
       fragment on ToDo_deletePayload {
@@ -34,6 +36,7 @@ export default class ToDo_deleteMutation extends Relay.Mutation {
       }
     `;
   }
+
   getConfigs() {
     return [{
       type: 'NODE_DELETE',
@@ -43,16 +46,18 @@ export default class ToDo_deleteMutation extends Relay.Mutation {
       deletedIDFieldName: 'deletedToDoId',
     }];
   }
+
   getVariables() {
     return {
       id: this.props.ToDo.id,
     };
   }
+
   getOptimisticResponse() {
     var ViewerPayload = {id: this.props.Viewer.id};
     if (this.props.Viewer.ToDo_CompletedCount != null) {
       ViewerPayload.ToDo_CompletedCount = this.props.ToDo.ToDo_Complete === true ?
-        this.props.Viewer.ToDo_CompletedCount - 1 :
+      this.props.Viewer.ToDo_CompletedCount - 1 :
         this.props.Viewer.ToDo_CompletedCount;
     }
     if (this.props.Viewer.ToDo_TotalCount != null) {

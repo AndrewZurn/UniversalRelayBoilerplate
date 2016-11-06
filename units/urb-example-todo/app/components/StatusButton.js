@@ -1,14 +1,8 @@
 /* @flow weak */
 'use strict';
 
-import React, {
-  PropTypes,
-} from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-} from 'react-native';
+import React, {PropTypes} from "react";
+import {StyleSheet, Text, TouchableHighlight} from "react-native";
 
 export default class StatusButton extends React.Component {
   static propTypes = {
@@ -20,6 +14,7 @@ export default class StatusButton extends React.Component {
     onPress: PropTypes.func.isRequired,
     style: Text.propTypes.style,
   };
+
   render() {
     return (
       <TouchableHighlight

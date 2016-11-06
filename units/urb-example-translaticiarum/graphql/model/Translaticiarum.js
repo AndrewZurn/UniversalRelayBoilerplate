@@ -1,10 +1,8 @@
-import ObjectManager from '../../../../graphql/ObjectManager'
+import ObjectManager from "../../../../graphql/ObjectManager";
 
 // Class used by GraphQL Server
-export default class Translaticiarum
-{
-  constructor( fields )
-  {
+export default class Translaticiarum {
+  constructor(fields) {
     this.id = fields.id;
     this.Translaticiarum_User_id = fields.Translaticiarum_User_id;
     this.Translaticiarum_Date = fields.Translaticiarum_Date;
@@ -13,4 +11,4 @@ export default class Translaticiarum
   }
 }
 
-ObjectManager.registerEntity( 'Translaticiarum', Translaticiarum )
+ObjectManager.registerEntity('Translaticiarum', Translaticiarum)

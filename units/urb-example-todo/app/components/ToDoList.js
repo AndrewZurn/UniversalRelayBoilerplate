@@ -1,33 +1,21 @@
 /* @flow weak */
 'use strict';
 
-import Relay from 'react-relay';
-import React, {
-  PropTypes,
-} from 'react';
-import {
-  ListView,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from 'react-native';
-
-import ToDo_addMutation from '../../relay/ToDo_addMutation';
-import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAllMutation';
-import ToDo_deleteMutation from '../../relay/ToDo_deleteMutation';
-import ToDo from './ToDo';
-import ToDoTextInput from './ToDoTextInput';
-
-import Swipeout from '../../../../units/urb-react-native-swipeout/app/components/Swipeout';
+import Relay from "react-relay";
+import React, {PropTypes} from "react";
+import {ListView, Platform, StyleSheet, Text, TouchableHighlight, View} from "react-native";
+import ToDo_addMutation from "../../relay/ToDo_addMutation";
+import ToDo_list_updateMarkAllMutation from "../../relay/ToDo_list_updateMarkAllMutation";
+import ToDo_deleteMutation from "../../relay/ToDo_deleteMutation";
+import ToDo from "./ToDo";
+import ToDoTextInput from "./ToDoTextInput";
+import Swipeout from "../../../../units/urb-react-native-swipeout/app/components/Swipeout";
 
 const _ToDosDataSource = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1.__dataID__ !== r2.__dataID__,
 });
 
-class ToDoList extends React.Component
-{
+class ToDoList extends React.Component {
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
   };
@@ -36,6 +24,7 @@ class ToDoList extends React.Component
     status: PropTypes.oneOf(['active', 'any', 'completed']).isRequired,
     style: View.propTypes.style,
   };
+
   constructor(props, context) {
     super(props, context);
     const {edges} = props.Viewer.ToDos;
@@ -50,6 +39,7 @@ class ToDoList extends React.Component
     this._handleTodoDestroy = this._handleTodoDestroy.bind(this);
     this.renderTodoEdge = this.renderTodoEdge.bind(this);
   }
+
   _handleMarkAllPress() {
     const numTodos = this.props.Viewer.ToDo_TotalCount;
     const numCompletedTodos = this.props.Viewer.ToDo_CompletedCount;
@@ -62,14 +52,17 @@ class ToDoList extends React.Component
       })
     );
   }
+
   _handleSwipeInactive(swipeInactive) {
     this.setState({listScrollEnabled: swipeInactive});
   }
+
   _handleTextInputSave(ToDo_Text) {
     this.context.relay.commitUpdate(
       new ToDo_addMutation({ToDo_Text, Viewer: this.props.Viewer})
     );
   }
+
   _handleTodoDestroy(ToDo) {
     this.context.relay.commitUpdate(
       new ToDo_deleteMutation({
@@ -78,14 +71,15 @@ class ToDoList extends React.Component
       })
     );
   }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.Viewer.ToDos.edges !== nextProps.Viewer.ToDos.edges) {
       this.setState({
-        ToDosDataSource:
-          _ToDosDataSource.cloneWithRows(nextProps.Viewer.ToDos.edges),
+        ToDosDataSource: _ToDosDataSource.cloneWithRows(nextProps.Viewer.ToDos.edges),
       });
     }
   }
+
   renderTodoEdge(todoEdge) {
     const destroyHandler = this._handleTodoDestroy.bind(null, todoEdge.node);
     return (
@@ -106,9 +100,11 @@ class ToDoList extends React.Component
       </Swipeout>
     );
   }
+
   renderSeparator(sectionId, rowId) {
-    return <View key={`sep_${sectionId}_${rowId}`} style={styles.separator} />;
+    return <View key={`sep_${sectionId}_${rowId}`} style={styles.separator}/>;
   }
+
   render() {
     const numTodos = this.props.Viewer.ToDo_TotalCount;
     const numCompletedTodos = this.props.Viewer.ToDo_CompletedCount;
@@ -152,7 +148,7 @@ export default Relay.createContainer(ToDoList, {
     limit: 2147483647,
   },
 
-  prepareVariables( { status } )
+  prepareVariables({status})
   {
     var nextStatus;
     if (status === 'active' || status === 'completed') {

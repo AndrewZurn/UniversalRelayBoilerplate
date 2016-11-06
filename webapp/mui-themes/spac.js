@@ -1,17 +1,7 @@
 /* @flow weak */
 
-import {
-  blue500,
-  blue700,
-  blueGrey100,
-  blueGrey500,
-  darkBlack,
-  grey300,
-  lightBlack,
-  purpleA200,
-  white
-} from 'material-ui/styles/colors';
-import {fade} from 'material-ui/utils/colorManipulator';
+import {blue500, darkBlack, grey300, white} from "material-ui/styles/colors";
+import {fade} from "material-ui/utils/colorManipulator";
 
 export default {
   spacing: {
@@ -39,7 +29,7 @@ export default {
     alternateTextColor: "#c0b38e",
     canvasColor: "#333333",
     borderColor: grey300,
-    disabledColor: fade( darkBlack, 0.3 ),
+    disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: blue500,
   },
   avatar: {

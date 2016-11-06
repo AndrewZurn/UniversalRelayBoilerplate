@@ -1,24 +1,20 @@
-export default function matchInDepth( payload, condition )
-{
-  for( let ix in condition )
-  {
-    const payloadValue = payload[ ix ]
+export default function matchInDepth(payload, condition) {
+  for (let ix in condition) {
+    const payloadValue = payload[ix]
     const typeOfValue = typeof payloadValue
 
-    const conditionValue = condition[ ix ]
+    const conditionValue = condition[ix]
     const typeOfCondition = typeof conditionValue
 
-    if( typeOfValue !== typeOfCondition )
+    if (typeOfValue !== typeOfCondition)
       return false
 
-    if( typeOfCondition === 'object' )
-    {
-      if( ! matchInDepth( payloadValue, conditionValue ) )
+    if (typeOfCondition === 'object') {
+      if (!matchInDepth(payloadValue, conditionValue))
         return false
     }
-    else
-    {
-      if( payloadValue != conditionValue )
+    else {
+      if (payloadValue != conditionValue)
         return false
     }
   }

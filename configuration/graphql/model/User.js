@@ -1,10 +1,8 @@
 /* @flow weak */
 
 // Class used by GraphQL Server
-export default class User
-{
-  constructor( fields )
-  {
+export default class User {
+  constructor(fields) {
     this.id = fields.id
     this.UserToken2 = fields.UserToken2
     this.User_AccountName = fields.User_AccountName

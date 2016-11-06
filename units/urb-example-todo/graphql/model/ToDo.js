@@ -1,10 +1,8 @@
-import ObjectManager from '../../../../graphql/ObjectManager'
+import ObjectManager from "../../../../graphql/ObjectManager";
 
 // Class used by GraphQL Server
-export default class ToDo
-{
-  constructor( fields )
-  {
+export default class ToDo {
+  constructor(fields) {
     this.id = fields.id;
     this.ToDo_User_id = fields.ToDo_User_id;
     this.ToDo_Text = fields.ToDo_Text;
@@ -12,4 +10,4 @@ export default class ToDo
   }
 }
 
-ObjectManager.registerEntity( 'ToDo', ToDo )
+ObjectManager.registerEntity('ToDo', ToDo)

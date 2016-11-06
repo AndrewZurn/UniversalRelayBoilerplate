@@ -1,37 +1,27 @@
 /* @flow weak */
 'use strict';
 
-import Relay from 'react-relay';
-import StatusButton from './StatusButton';
-import ToDoList from './ToDoList';
-import ToDoListFooter from './ToDoListFooter';
-import React from 'react';
-import {
-  Platform,
-  StyleSheet,
-  View,
-} from 'react-native';
+import Relay from "react-relay";
+import StatusButton from "./StatusButton";
+import ToDoList from "./ToDoList";
+import ToDoListFooter from "./ToDoListFooter";
+import React from "react";
+import {Platform, StyleSheet, View} from "react-native";
 
 
-
-
-class ToDoScreen extends React.Component
-{
-  constructor(props, context)
-  {
+class ToDoScreen extends React.Component {
+  constructor(props, context) {
     super(props, context);
   }
 
-  _handleStatusChange = ( status ) =>
-  {
-    this.props.relay.setVariables( { status } )
+  _handleStatusChange = (status) => {
+    this.props.relay.setVariables({status})
   };
 
-  render()
-  {
+  render() {
     return (
       <View style={styles.container}>
-          <View style={styles.actionList}>
+        <View style={styles.actionList}>
           <StatusButton
             active={this.props.relay.variables.status === 'any'}
             onPress={ ( ) => this._handleStatusChange( 'any' ) }>

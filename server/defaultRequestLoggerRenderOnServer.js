@@ -1,21 +1,20 @@
 /* @flow weak */
 
-import log from './log'
-import matchInDepth from '../scripts/matchInDepth'
+import log from "./log";
+import matchInDepth from "../scripts/matchInDepth";
 
 
 // Read environment
-require( 'dotenv' ).load( )
+require('dotenv').load()
 
 
-const condition =  JSON.parse( process.env.TRACE_CONDITION_REQUEST_RENDER_ON_SERVER )
+const condition = JSON.parse(process.env.TRACE_CONDITION_REQUEST_RENDER_ON_SERVER)
 
 // Example for logging requests that:
 // { "trace" : "none" } - do not trace any requests
 // { "clientIP": "127.0.0.1" } - trace requests coming from localhost
 
-export default function defaultrequestLoggerRenderOnServer( requestAndResponse )
-{
+export default function defaultrequestLoggerRenderOnServer(requestAndResponse) {
   let logLevel = null
 
   // TODO: Whhat errors for Auth should be logged? definitily not 401.
@@ -24,9 +23,9 @@ export default function defaultrequestLoggerRenderOnServer( requestAndResponse )
   //   logLevel = 'error'
   // Otherwise, if it is a trace, log it as info
   //else
-  if( matchInDepth( requestAndResponse, condition ) )
+  if (matchInDepth(requestAndResponse, condition))
     logLevel = 'info'
 
-  if( logLevel )
-    log.log( logLevel, 'Render on server request', requestAndResponse )
+  if (logLevel)
+    log.log(logLevel, 'Render on server request', requestAndResponse)
 }

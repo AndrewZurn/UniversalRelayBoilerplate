@@ -1,17 +1,13 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
+import React from "react";
+import Relay from "react-relay";
+import {List} from "material-ui/List";
+import Translaticiarum_Item from "./Translaticiarum_Item";
 
-import {List} from 'material-ui/List';
-
-import Translaticiarum_Item from './Translaticiarum_Item';
-
-class Translaticiarum_List extends React.Component
-{
-  renderTranslaticiarums( )
-  {
+class Translaticiarum_List extends React.Component {
+  renderTranslaticiarums() {
     return this.props.Viewer.Translaticiarums.edges.map(edge =>
       <Translaticiarum_Item
         key={edge.node.id}
@@ -21,19 +17,18 @@ class Translaticiarum_List extends React.Component
     );
   }
 
-  render( )
-  {
+  render() {
     return (
       <div>
         <List>
-          { this.renderTranslaticiarums( ) }
+          { this.renderTranslaticiarums() }
         </List>
       </div>
     );
   }
 }
 
-export default Relay.createContainer( Translaticiarum_List, {
+export default Relay.createContainer(Translaticiarum_List, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {

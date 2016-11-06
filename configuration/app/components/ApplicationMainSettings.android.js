@@ -1,5 +1,4 @@
 /* @flow weak */
 
-export function componentDidMountAdditionalInitialization( )
-{
+export function componentDidMountAdditionalInitialization() {
 }

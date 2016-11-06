@@ -1,12 +1,8 @@
 // This is a modified version of: https://github.com/kadirahq/graphql-errors/blob/master/lib/index.js
 
 //import uuid from 'uuid';
-import {
-  GraphQLObjectType,
-  GraphQLSchema,
-} from 'graphql';
-
-import log from '../server/log'
+import {GraphQLObjectType, GraphQLSchema} from "graphql";
+import log from "../server/log";
 
 
 // Mark field/type/schema
@@ -37,7 +33,7 @@ export let defaultHandler = function (err) {
   // TODO: x1000 Consider having a unique ID for the errors, most probably move it to the log though, so that all modules can use it
   // const errId = uuid.v4();
   // err.message = `${err.message}: ${errId}`;
-  log.log( 'error', 'Resolve function failed', { error: err && err.stack || err });
+  log.log('error', 'Resolve function failed', {error: err && err.stack || err});
   err.message = `Internal Error`;
   return err;
 };

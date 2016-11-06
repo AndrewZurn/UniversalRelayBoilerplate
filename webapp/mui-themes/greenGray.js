@@ -3,17 +3,8 @@
 // This is simply a copy of the light theme as per:
 // http://www.material-ui.com/v0.15.0-alpha.1/#/customization/themes
 
-import {
-  cyan500,
-  darkBlack,
-  green500,
-  grey100,
-  grey300,
-  grey500,
-  grey800,
-  white
-} from 'material-ui/styles/colors';
-import {fade} from 'material-ui/utils/colorManipulator';
+import {cyan500, darkBlack, green500, grey100, grey300, grey500, grey800, white} from "material-ui/styles/colors";
+import {fade} from "material-ui/utils/colorManipulator";
 
 export default {
   spacing: {
@@ -41,7 +32,7 @@ export default {
     alternateTextColor: white,
     canvasColor: white,
     borderColor: grey300,
-    disabledColor: fade( darkBlack, 0.3 ),
+    disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: cyan500,
   },
   avatar: {

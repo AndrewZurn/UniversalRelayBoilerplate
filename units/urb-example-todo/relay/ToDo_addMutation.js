@@ -1,6 +1,6 @@
 /* @flow weak */
 
-import Relay from 'react-relay';
+import Relay from "react-relay";
 
 export default class ToDo_addMutation extends Relay.Mutation {
   static fragments = {
@@ -11,9 +11,11 @@ export default class ToDo_addMutation extends Relay.Mutation {
       }
     `,
   };
+
   getMutation() {
     return Relay.QL`mutation{ToDo_add}`;
   }
+
   getFatQuery() {
     return Relay.QL`
       fragment on ToDo_addPayload {
@@ -25,6 +27,7 @@ export default class ToDo_addMutation extends Relay.Mutation {
       }
     `;
   }
+
   getConfigs() {
     return [{
       type: 'RANGE_ADD',
@@ -40,11 +43,13 @@ export default class ToDo_addMutation extends Relay.Mutation {
       },
     }];
   }
+
   getVariables() {
     return {
       ToDo_Text: this.props.ToDo_Text,
     };
   }
+
   getOptimisticResponse() {
     return {
       // FIXME: ToDo_TotalCount gets updated optimistically, but this edge does not

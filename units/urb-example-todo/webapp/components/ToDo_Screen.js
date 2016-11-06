@@ -1,60 +1,52 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
+import React from "react";
+import Relay from "react-relay";
+import {Card, CardHeader} from "material-ui/Card";
+import TextField from "material-ui/TextField";
+import ToDo_addMutation from "../../relay/ToDo_addMutation";
 
-import {Card, CardHeader} from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
-
-import ToDo_addMutation from '../../relay/ToDo_addMutation';
-
-class ToDo_Screen extends React.Component
-{
+class ToDo_Screen extends React.Component {
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
   };
 
-  constructor( props, context )
-  {
-     super( props, context );
+  constructor(props, context) {
+    super(props, context);
 
-     this.state = {
-       ToDo_Text_New: '',
-     };
-   }
+    this.state = {
+      ToDo_Text_New: '',
+    };
+  }
 
 
-  _handle_onKeyDown_AddToDo = ( e ) =>
-  {
-    if( e.keyCode === 13 )
-    {
+  _handle_onKeyDown_AddToDo = (e) => {
+    if (e.keyCode === 13) {
       this.context.relay.commitUpdate(
-        new ToDo_addMutation( {
+        new ToDo_addMutation({
           ToDo_Text: this.state.ToDo_Text_New,
           Viewer: this.props.Viewer
-        } )
+        })
       );
 
-      this.setState( {
+      this.setState({
         ToDo_Text_New: '',
-      } );
+      });
     }
   };
 
-  _handle_OnChange = ( event ) =>
-  {
-    this.setState( {
+  _handle_OnChange = (event) => {
+    this.setState({
       ToDo_Text_New: event.target.value,
-    } );
+    });
   };
 
-  render( )
-  {
+  render() {
     return (
       <Card>
 
-        <CardHeader title="TO DOs" subtitle="List of TO DOs for user" />
+        <CardHeader title="TO DOs" subtitle="List of TO DOs for user"/>
 
         { this.props.children }
 
@@ -73,7 +65,7 @@ class ToDo_Screen extends React.Component
   }
 }
 
-export default Relay.createContainer( ToDo_Screen, {
+export default Relay.createContainer(ToDo_Screen, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {

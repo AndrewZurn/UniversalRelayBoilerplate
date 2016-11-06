@@ -1,7 +1,7 @@
 /* @flow weak */
 
-import fs from 'fs'
-import path from 'path'
+import fs from "fs";
+import path from "path";
 
 
 const supportedPersisters = {
@@ -12,8 +12,7 @@ const supportedPersisters = {
 }
 
 
-function updateDefaultPersister( fileName )
-{
+function updateDefaultPersister(fileName) {
   const defaultPersister = [
     `/* @flow */`,
     ``,
@@ -24,21 +23,20 @@ function updateDefaultPersister( fileName )
     `export default defaultPersister`,
   ]
 
-  console.log( 'Written: ' + path.resolve( './configuration/graphql/defaultPersister.js' ) )
-  fs.writeFileSync( './configuration/graphql/defaultPersister.js', defaultPersister.join( '\r\n' ), 'utf8' )
+  console.log('Written: ' + path.resolve('./configuration/graphql/defaultPersister.js'))
+  fs.writeFileSync('./configuration/graphql/defaultPersister.js', defaultPersister.join('\r\n'), 'utf8')
 }
 
 
-const persisterName = process.argv[ 2 ]
-const persisterFileName = supportedPersisters[ persisterName ]
+const persisterName = process.argv[2]
+const persisterFileName = supportedPersisters[persisterName]
 
-if( persisterFileName != null )
-  updateDefaultPersister( persisterFileName )
-else
-{
-  console.error( "Error: Default persister not specified. Specify default persister, for instance:" )
-  console.error( "  npm run update-default-persister -- memory" )
-  console.error( "Valid options are:" )
-  for( let name in supportedPersisters )
-    console.error( "  " + name )
+if (persisterFileName != null)
+  updateDefaultPersister(persisterFileName)
+else {
+  console.error("Error: Default persister not specified. Specify default persister, for instance:")
+  console.error("  npm run update-default-persister -- memory")
+  console.error("Valid options are:")
+  for (let name in supportedPersisters)
+    console.error("  " + name)
 }

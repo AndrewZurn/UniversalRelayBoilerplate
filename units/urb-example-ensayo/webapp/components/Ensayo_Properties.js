@@ -1,53 +1,46 @@
 /* @flow weak */
 
-import React from 'react';
+import React from "react";
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
+import TextField from "material-ui/TextField";
 
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
 
-
-export default class Ensayo_Properties extends React.Component
-{
-  constructor( props : any, context )
-  {
-    super( props, context );
+export default class Ensayo_Properties extends React.Component {
+  constructor(props: any, context) {
+    super(props, context);
 
     this.state = {
       Dialog_IsOpen: false,
     };
   }
 
-  _handle_Open = ( ) =>
-  {
-    this.setState( {
+  _handle_Open = () => {
+    this.setState({
       Dialog_IsOpen: true
-    } );
+    });
   };
 
-  _handle_onTouchTap_Cancel = ( ) =>
-  {
-    this.setState( {
+  _handle_onTouchTap_Cancel = () => {
+    this.setState({
       Dialog_IsOpen: false
-    } );
+    });
   };
 
-  _handle_onTouchTap_OK = ( ) =>
-  {
-    this.props.updateHandler( {
-      Ensayo_Content: this.refs.Ensayo_Content.getValue( ),
-      Ensayo_Title: this.refs.Ensayo_Title.getValue( ),
-      Ensayo_Description: this.refs.Ensayo_Description.getValue( ),
-    } );
+  _handle_onTouchTap_OK = () => {
+    this.props.updateHandler({
+      Ensayo_Content: this.refs.Ensayo_Content.getValue(),
+      Ensayo_Title: this.refs.Ensayo_Title.getValue(),
+      Ensayo_Description: this.refs.Ensayo_Description.getValue(),
+    });
 
-    this.setState( {
+    this.setState({
       Dialog_IsOpen: false
-    } );
+    });
   };
 
-  render( )
-  {
-    return(
+  render() {
+    return (
       <div>
         <Dialog
           open={ this.state.Dialog_IsOpen }

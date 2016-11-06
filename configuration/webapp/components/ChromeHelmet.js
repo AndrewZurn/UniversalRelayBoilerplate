@@ -1,14 +1,12 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import Helmet from "react-helmet"
-import React from 'react'
+import Helmet from "react-helmet";
+import React from "react";
 
 
-export default class ChromeHelmet extends React.Component
-{
-  render( )
-  {
+export default class ChromeHelmet extends React.Component {
+  render() {
     return (
       <Helmet
         title="SPAC Fusion Editor"

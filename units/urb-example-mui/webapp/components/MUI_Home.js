@@ -1,15 +1,12 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
+import React from "react";
+import Relay from "react-relay";
+import {Card, CardHeader, CardText} from "material-ui/Card";
 
-import {Card, CardHeader, CardText} from 'material-ui/Card';
-
-class MUI_Home extends React.Component
-{
-  render( )
-  {
+class MUI_Home extends React.Component {
+  render() {
     return (
       <Card>
         <CardHeader
@@ -31,7 +28,7 @@ class MUI_Home extends React.Component
   }
 }
 
-export default Relay.createContainer( MUI_Home, {
+export default Relay.createContainer(MUI_Home, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {
@@ -39,4 +36,4 @@ export default Relay.createContainer( MUI_Home, {
       }
     `,
   },
-} );
+});

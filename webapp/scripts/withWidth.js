@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import EventListener from 'react-event-listener';
+import React, {Component} from "react";
+import EventListener from "react-event-listener";
 
 export const SMALL = 1;
 export const MEDIUM = 2;
@@ -12,9 +12,8 @@ export default function withWidth(options = {}) {
 
   return (MyComponent) => {
     return class WithWidth extends Component {
-      constructor( props, context )
-      {
-        super( props, context )
+      constructor(props, context) {
+        super(props, context)
         this.state = {
           width: this.getWidth(),
         };

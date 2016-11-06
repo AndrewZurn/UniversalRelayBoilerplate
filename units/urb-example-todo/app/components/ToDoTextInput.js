@@ -1,17 +1,15 @@
 /* @flow weak */
 'use strict'
 
-import React from 'react'
-import { TextInput } from 'react-native'
+import React from "react";
+import {TextInput} from "react-native";
 
-export default class ToDoTextInput extends React.Component
-{
-  defaultProps:{
+export default class ToDoTextInput extends React.Component {
+  defaultProps: {
     commitOnBlur: false,
   }
 
-  propTypes:
-  {
+  propTypes: {
     autoFocus: TextInput.propTypes.autoFocus,
     clearButtonMode: TextInput.propTypes.clearButtonMode,
     initialValue: React.PropTypes.string.isRequred,
@@ -24,8 +22,7 @@ export default class ToDoTextInput extends React.Component
     value: TextInput.propTypes.value,
   }
 
-  constructor(props, context)
-  {
+  constructor(props, context) {
     super(props, context)
     this._commitChanges = this._commitChanges.bind(this)
     this._handleBlur = this._handleBlur.bind(this)
@@ -37,8 +34,7 @@ export default class ToDoTextInput extends React.Component
     }
   }
 
-  _commitChanges( )
-  {
+  _commitChanges() {
     var newText = this.state.ToDo_Text.trim()
     if (this.props.onDelete && newText === '') {
       this.props.onDelete()
@@ -52,31 +48,27 @@ export default class ToDoTextInput extends React.Component
     }
   }
 
-  _handleBlur()
-  {
+  _handleBlur() {
     if (this.props.commitOnBlur) {
       this._commitChanges()
     }
   }
 
-  _handleChangeText( ToDo_Text )
-  {
+  _handleChangeText(ToDo_Text) {
     if (this._mounted !== false) {
       this.setState({ToDo_Text: ToDo_Text})
     }
   }
 
-  _handleSubmitEditing( )
-  {
+  _handleSubmitEditing() {
     this._commitChanges()
   }
-  componentWillUnmount( )
-  {
+
+  componentWillUnmount() {
     this._mounted = false
   }
 
-  render()
-  {
+  render() {
     return (
       <TextInput
         autoFocus={this.props.autoFocus}

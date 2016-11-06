@@ -1,42 +1,35 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
-
-import {Card, CardHeader} from 'material-ui/Card';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-
-import Ensayo_addMutation from '../../relay/Ensayo_addMutation';
-
-import Ensayo_Properties from './Ensayo_Properties';
+import React from "react";
+import Relay from "react-relay";
+import {Card, CardHeader} from "material-ui/Card";
+import ContentAdd from "material-ui/svg-icons/content/add";
+import FloatingActionButton from "material-ui/FloatingActionButton";
+import Ensayo_addMutation from "../../relay/Ensayo_addMutation";
+import Ensayo_Properties from "./Ensayo_Properties";
 
 
-class Ensayo_Screen extends React.Component
-{
+class Ensayo_Screen extends React.Component {
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
   };
 
-  _handle_updateHandler_Ensayo = ( Ensayo_properties ) =>
-  {
+  _handle_updateHandler_Ensayo = (Ensayo_properties) => {
     this.context.relay.commitUpdate(
-      new Ensayo_addMutation( { ...Ensayo_properties, Viewer: this.props.Viewer } )
+      new Ensayo_addMutation({...Ensayo_properties, Viewer: this.props.Viewer})
     );
   };
 
-  _handle_onTouchTap_Add = ( ) =>
-  {
-    this.refs.Ensayo_Properties._handle_Open( );
+  _handle_onTouchTap_Add = () => {
+    this.refs.Ensayo_Properties._handle_Open();
   };
 
-  render( )
-  {
+  render() {
     return (
       <Card initiallyExpanded={true}>
 
-        <CardHeader title="Ensayo" subtitle="This means Essay in Spanish" />
+        <CardHeader title="Ensayo" subtitle="This means Essay in Spanish"/>
 
         <div style={ {float: 'right', marginTop: -58, marginRight: 20 } }>
           <FloatingActionButton
@@ -63,7 +56,7 @@ class Ensayo_Screen extends React.Component
   }
 }
 
-export default Relay.createContainer( Ensayo_Screen, {
+export default Relay.createContainer(Ensayo_Screen, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {

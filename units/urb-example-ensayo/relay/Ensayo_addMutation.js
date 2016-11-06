@@ -1,6 +1,6 @@
 /* @flow weak */
 
-import Relay from 'react-relay';
+import Relay from "react-relay";
 
 export default class Ensayo_addMutation extends Relay.Mutation {
   static fragments = {
@@ -10,9 +10,11 @@ export default class Ensayo_addMutation extends Relay.Mutation {
       }
     `,
   };
+
   getMutation() {
     return Relay.QL`mutation{Ensayo_add}`;
   }
+
   getFatQuery() {
     return Relay.QL`
       fragment on Ensayo_addPayload {
@@ -23,6 +25,7 @@ export default class Ensayo_addMutation extends Relay.Mutation {
       }
     `;
   }
+
   getConfigs() {
     return [{
       type: 'RANGE_ADD',
@@ -35,6 +38,7 @@ export default class Ensayo_addMutation extends Relay.Mutation {
       },
     }];
   }
+
   getVariables() {
     return {
       Ensayo_Content: this.props.Ensayo_Content,
@@ -42,6 +46,7 @@ export default class Ensayo_addMutation extends Relay.Mutation {
       Ensayo_Description: this.props.Ensayo_Description,
     };
   }
+
   getOptimisticResponse() {
     return {
       EnsayosEdge: {

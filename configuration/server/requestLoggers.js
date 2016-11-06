@@ -1,9 +1,9 @@
 /* @flow weak */
 
-import defaultRequestLoggerAuth from '../../server/defaultRequestLoggerAuth'
-import defaultRequestLoggerGraphQL from '../../server/defaultRequestLoggerGraphQL'
-import defaultRequestLoggerPublic from '../../server/defaultRequestLoggerPublic'
-import defaultRequestLoggerRenderOnServer from '../../server/defaultRequestLoggerRenderOnServer'
+import defaultRequestLoggerAuth from "../../server/defaultRequestLoggerAuth";
+import defaultRequestLoggerGraphQL from "../../server/defaultRequestLoggerGraphQL";
+import defaultRequestLoggerPublic from "../../server/defaultRequestLoggerPublic";
+import defaultRequestLoggerRenderOnServer from "../../server/defaultRequestLoggerRenderOnServer";
 
 
 export var requestLoggerAuth = defaultRequestLoggerAuth

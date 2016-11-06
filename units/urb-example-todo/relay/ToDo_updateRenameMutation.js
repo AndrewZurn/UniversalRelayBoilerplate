@@ -1,6 +1,6 @@
 /* @flow weak */
 
-import Relay from 'react-relay';
+import Relay from "react-relay";
 
 export default class ToDo_updateRenameMutation extends Relay.Mutation {
   static fragments = {
@@ -10,9 +10,11 @@ export default class ToDo_updateRenameMutation extends Relay.Mutation {
       }
     `,
   };
+
   getMutation() {
     return Relay.QL`mutation{ToDo_updateRename}`;
   }
+
   getFatQuery() {
     return Relay.QL`
       fragment on ToDo_updateRenamePayload {
@@ -22,6 +24,7 @@ export default class ToDo_updateRenameMutation extends Relay.Mutation {
       }
     `;
   }
+
   getConfigs() {
     return [{
       type: 'FIELDS_CHANGE',
@@ -30,12 +33,14 @@ export default class ToDo_updateRenameMutation extends Relay.Mutation {
       },
     }];
   }
+
   getVariables() {
     return {
       id: this.props.ToDo.id,
       ToDo_Text: this.props.ToDo_Text,
     };
   }
+
   getOptimisticResponse() {
     return {
       ToDo: {

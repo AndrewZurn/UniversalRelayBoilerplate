@@ -2,18 +2,15 @@
 /* eslint react/prop-types: 0 */
 
 import Helmet from "react-helmet";
-import React from 'react';
-import Relay from 'react-relay';
+import React from "react";
+import Relay from "react-relay";
+import {Card, CardHeader, CardText} from "material-ui/Card";
 
-import {Card, CardHeader, CardText} from 'material-ui/Card';
-
-class Ensayo_PublicItem extends React.Component
-{
-  render( )
-  {
+class Ensayo_PublicItem extends React.Component {
+  render() {
     // In a fairly barbaric way, limit the length of headings so that they are not considered spam
-    let contentH1 = this.props.Viewer.Ensayo.Ensayo_Title.substring( 0, 100 );
-    let contentH2 = this.props.Viewer.Ensayo.Ensayo_Description.substring( 0, 100 );
+    let contentH1 = this.props.Viewer.Ensayo.Ensayo_Title.substring(0, 100);
+    let contentH2 = this.props.Viewer.Ensayo.Ensayo_Description.substring(0, 100);
 
     return (
       <div>
@@ -37,16 +34,15 @@ class Ensayo_PublicItem extends React.Component
   }
 }
 
-export default Relay.createContainer( Ensayo_PublicItem, {
+export default Relay.createContainer(Ensayo_PublicItem, {
 
-  initialVariables:
-  {
+  initialVariables: {
     id: null,
   },
 
-  prepareVariables( { id } )
+  prepareVariables({id})
   {
-    return { id };
+    return {id};
   },
 
   fragments: {

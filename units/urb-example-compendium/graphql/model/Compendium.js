@@ -1,10 +1,8 @@
-import ObjectManager from '../../../../graphql/ObjectManager'
+import ObjectManager from "../../../../graphql/ObjectManager";
 
 // Class used by GraphQL Server
-export default class Compendium
-{
-  constructor( fields )
-  {
+export default class Compendium {
+  constructor(fields) {
     this.id = fields.id;
     this.Compendium_User_id = fields.Compendium_User_id;
     this.Compendium_FirstTextInput = fields.Compendium_FirstTextInput;
@@ -25,4 +23,4 @@ export default class Compendium
   }
 }
 
-ObjectManager.registerEntity( 'Compendium', Compendium )
+ObjectManager.registerEntity('Compendium', Compendium)

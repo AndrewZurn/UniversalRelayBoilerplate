@@ -1,24 +1,14 @@
 /* @flow weak */
 'use strict';
 
-import ToDo_updateStatusMutation from '../../relay/ToDo_updateStatusMutation';
-import ToDo_updateRenameMutation from '../../relay/ToDo_updateRenameMutation';
-import Relay from 'react-relay';
-import ToDoTextInput from './ToDoTextInput';
-import React, {
-  PropTypes,
-} from 'react';
-import {
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import ToDo_updateStatusMutation from "../../relay/ToDo_updateStatusMutation";
+import ToDo_updateRenameMutation from "../../relay/ToDo_updateRenameMutation";
+import Relay from "react-relay";
+import ToDoTextInput from "./ToDoTextInput";
+import React, {PropTypes} from "react";
+import {Image, Platform, StyleSheet, Text, TouchableHighlight, View} from "react-native";
 
-class ToDo extends React.Component
-{
+class ToDo extends React.Component {
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
   };
@@ -30,6 +20,7 @@ class ToDo extends React.Component
   state = {
     isEditing: false,
   };
+
   constructor(props, context) {
     super(props, context);
     this._handleCompletePress = this._handleCompletePress.bind(this);
@@ -39,6 +30,7 @@ class ToDo extends React.Component
     this._handleTextInputSave = this._handleTextInputSave.bind(this);
     this._setEditMode = this._setEditMode.bind(this);
   }
+
   _handleCompletePress() {
     var ToDo_Complete = !this.props.ToDo.ToDo_Complete;
     this.context.relay.commitUpdate(
@@ -49,25 +41,31 @@ class ToDo extends React.Component
       })
     );
   }
+
   _handleLabelPress() {
     this._setEditMode(true);
   }
+
   _handleTextInputCancel() {
     this._setEditMode(false);
   }
+
   _handleTextInputDelete() {
     this._setEditMode(false);
     this.props.onDestroy();
   }
+
   _handleTextInputSave(ToDo_Text) {
     this._setEditMode(false);
     this.context.relay.commitUpdate(
       new ToDo_updateRenameMutation({ToDo: this.props.ToDo, ToDo_Text})
     );
   }
+
   _setEditMode(shouldEdit) {
     this.setState({isEditing: shouldEdit});
   }
+
   renderCompleteCheckbox() {
     const imageModule = this.props.ToDo.ToDo_Complete ?
       require('../images/todo_checkbox-active.png') :
@@ -77,10 +75,11 @@ class ToDo extends React.Component
         onPress={this._handleCompletePress}
         style={styles.checkbox}
         underlayColor="transparent">
-        <Image source={imageModule} />
+        <Image source={imageModule}/>
       </TouchableHighlight>
     );
   }
+
   render() {
     return (
       <View style={[this.props.style, styles.container]}>
