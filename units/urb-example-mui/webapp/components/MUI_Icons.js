@@ -18,7 +18,6 @@ import ActionAlarmOff from "material-ui/svg-icons/action/alarm-off";
 import ActionAlarmOn from "material-ui/svg-icons/action/alarm-on";
 import ActionAlarm from "material-ui/svg-icons/action/alarm";
 import ActionAllOut from "material-ui/svg-icons/action/all-out";
-import ActionAndroid from "material-ui/svg-icons/action/android";
 import ActionAnnouncement from "material-ui/svg-icons/action/announcement";
 import ActionAspectRatio from "material-ui/svg-icons/action/aspect-ratio";
 import ActionAssessment from "material-ui/svg-icons/action/assessment";
@@ -102,8 +101,6 @@ class MUI_Icons extends React.Component {
             <ListItem key="11" primaryText="ActionAllOut" secondaryText="material-ui/svg-icons/action/all-out"
                       leftIcon={<ActionAllOut />}/>
             <Divider inset={true}/>
-            <ListItem key="12" primaryText="ActionAndroid" secondaryText="material-ui/svg-icons/action/android"
-                      leftIcon={<ActionAndroid />}/>
             <Divider inset={true}/>
             <ListItem key="13" primaryText="ActionAnnouncement"
                       secondaryText="material-ui/svg-icons/action/announcement" leftIcon={<ActionAnnouncement />}/>

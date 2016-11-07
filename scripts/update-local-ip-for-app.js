@@ -22,11 +22,6 @@ if (IPAddress == undefined) {
 if (IPAddress != undefined) {
   console.log("IP Address:" + IPAddress)
   updateIPInFile(
-    './ios/UniversalRelayBoilerplate/AppDelegate.m',
-    'jsCodeLocation = [NSURL URLWithString:@"http:',
-    '  jsCodeLocation = [NSURL URLWithString:@"http://' + IPAddress + ':8081/index.ios.bundle?platform=ios&dev=true"];'
-  )
-  updateIPInFile(
     './app/app.js',
     'let graphQLServerURL = "http://',
     'let graphQLServerURL = "http://' + IPAddress + ':4444/graphql";'

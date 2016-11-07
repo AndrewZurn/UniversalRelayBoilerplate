@@ -1,9 +1,6 @@
 {
   "ignore": [
-    "android/*",
-    "app/*",
     "build/*",
-    "ios/*",
     "public/*",
     "**/app/*"
   ]
