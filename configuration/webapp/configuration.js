@@ -13,7 +13,7 @@ let localConfig = Map({
 
 let prodConfig = Map({
   ...baseConfig,
-  API_ROOT: 'http://spac-fusion-api.us-west-2.elasticbeanstalk.com'
+  API_ROOT: `${API_ROOT}`
 });
 
 let configuration = getConfig();

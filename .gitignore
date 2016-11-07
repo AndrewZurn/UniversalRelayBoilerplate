@@ -23,5 +23,6 @@ build
 # Yarn
 #
 yarn-error.log
+yarn.lock
 
 .idea/

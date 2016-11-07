@@ -84,7 +84,7 @@ router.use('/*', webapp)
 // Serve - work differently in development and production. In production only the
 // specified host serves
 if (process.env.NODE_ENV == 'production')
-  router.listen(process.env.PORT, process.env.HOST)
+  router.listen(process.env.PORT || 5000)
 else {
   // Development server - localhost
   const localhostDevelopmentServer = express()
@@ -96,7 +96,7 @@ else {
   if (process.env.HOST != '127.0.0.1') {
     const localIPDevelopmentServer = express()
     localIPDevelopmentServer.use(router)
-    localIPDevelopmentServer.listen(process.env.PORT, process.env.HOST)
+    localIPDevelopmentServer.listen(process.env.PORT || 5000)
     console.log('DEVELOPMENT. Server listening on ' + process.env.HOST)
   }
 }

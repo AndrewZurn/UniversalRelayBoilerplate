@@ -1,0 +1,1 @@
+worker: node public/assets/13.4.2.105/client.js
