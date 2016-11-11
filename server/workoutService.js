@@ -1,5 +1,5 @@
-import * as api from '../../configuration/webapp/api';
-import * as configuration from '../../configuration/webapp/configuration';
+import * as api from '../configuration/webapp/api';
+import * as configuration from '../configuration/webapp/configuration';
 import moment from 'moment';
 
 const API_FAILED_REQUEST_WARNING = configuration.getConfiguration('API_FAILED_REQUEST_WARNING_MESSAGE');
