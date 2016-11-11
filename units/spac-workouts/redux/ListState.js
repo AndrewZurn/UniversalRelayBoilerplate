@@ -1,6 +1,6 @@
 import {Map} from 'immutable';
 import {loop, Effects} from 'redux-loop';
-import * as WorkoutsService from '../../../server/workoutService';
+import * as WorkoutsService from '../../../api/workoutService';
 
 // Initial state
 const initialState = Map({
@@ -20,7 +20,7 @@ export function getWorkoutsRequest() {
 async function getWorkouts() {
   return {
     type: GET_WORKOUTS_RESPONSE,
-    payload: null // await get workouts
+    payload: await WorkoutsService.getWorkouts()
   };
 }
 

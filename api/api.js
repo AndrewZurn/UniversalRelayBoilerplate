@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 import HttpError from 'standard-http-error';
-import {getConfiguration} from './configuration';
+import {getConfiguration} from '../configuration/webapp/configuration';
 
 const TIMEOUT = 6000;
 

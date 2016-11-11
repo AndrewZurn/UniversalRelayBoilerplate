@@ -1,6 +1,6 @@
 import {Map} from 'immutable';
 import {loop, Effects} from 'redux-loop';
-import * as ScheduledWorkoutsService from '../../../server/scheduledWorkoutService';
+import * as ScheduledWorkoutsService from '../../../api/scheduledWorkoutService';
 
 // Initial state
 const initialState = Map({
@@ -32,7 +32,7 @@ export function getScheduledWorkoutByIdRequest(scheduledWorkoutId) {
 async function getScheduledWorkoutById(scheduledWorkoutId) {
   return {
     type: GET_SCHEDULED_WORKOUT_BY_ID_RESPONSE,
-    payload: null // await get scheduled workout
+    payload: await ScheduledWorkoutsService.getScheduledWorkout(scheduledWorkoutId)
   };
 }
 
@@ -46,7 +46,7 @@ export function getScheduledWorkoutByDateRequest(date) {
 async function getScheduledWorkoutByDate(date) {
   return {
     type: GET_SCHEDULED_WORKOUT_BY_ID_RESPONSE,
-    payload: null // await get scheduled workout
+    payload: await ScheduledWorkoutsService.getScheduledWorkoutByDate(date)
   };
 }
 
@@ -60,7 +60,7 @@ export function createScheduledWorkoutRequest(scheduledWorkout) {
 async function createScheduledWorkout(scheduledWorkout) {
   return {
     type: CREATE_SCHEDULED_WORKOUT_RESPONSE,
-    payload: null // await save scheduled workout
+    payload: await ScheduledWorkoutsService.createScheduledWorkout(scheduledWorkout)
   }
 }
 
@@ -74,7 +74,7 @@ export function updateScheduledWorkoutStatusRequest(scheduledWorkoutId) {
 async function updateScheduledWorkoutStatus(scheduledWorkoutId) {
   return {
     type: UPDATE_SCHEDULED_WORKOUT_STATUS_RESPONSE,
-    payload: null // await update scheduled workout
+    payload: await ScheduledWorkoutsService.updateScheduledWorkoutStatus(scheduledWorkoutId)
   };
 }
 

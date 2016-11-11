@@ -1,6 +1,6 @@
 import {Map} from 'immutable';
 import {loop, Effects} from 'redux-loop';
-import * as UserService from '../../../server/userService';
+import * as UserService from '../../../api/userService';
 
 // Initial state
 const initialState = Map({
@@ -33,7 +33,7 @@ export function getUserByIdRequest(userId) {
 async function getUserById(userId) {
   return {
     type: GET_USER_BY_ID_RESPONSE,
-    payload: null // await get scheduled workout
+    payload: await UserService.getUser(userId)
   };
 }
 
@@ -47,7 +47,7 @@ export function getUserRemainingWorkoutsRequest(userId) {
 async function getUserRemainingWorkouts(userId) {
   return {
     type: GET_USER_REMAINING_WORKOUTS_RESPONSE,
-    payload: null // await get scheduled workout
+    payload: await UserService.getUserRemainingWorkouts(userId)
   };
 }
 
@@ -61,7 +61,7 @@ export function createUserRequest(user) {
 async function createUser(user) {
   return {
     type: CREATE_USER_RESPONSE,
-    payload: null // await save scheduled user
+    payload: await UserService.createUser(user)
   }
 }
 
@@ -75,7 +75,7 @@ export function updateUserRequest(user) {
 async function updateUser(user) {
   return {
     type: UPDATE_USER_RESPONSE,
-    payload: null // await update scheduled user
+    payload: await UserService.updateUser(user)
   };
 }
 

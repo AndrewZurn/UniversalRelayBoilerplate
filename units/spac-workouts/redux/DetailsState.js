@@ -1,6 +1,6 @@
 import {Map} from 'immutable';
 import {loop, Effects} from 'redux-loop';
-import * as WorkoutsService from '../../../server/workoutService';
+import * as WorkoutsService from '../../../api/workoutService';
 
 // Initial state
 const initialState = Map({
@@ -29,7 +29,7 @@ export function getWorkoutByIdRequest(workoutId) {
 async function getWorkoutById(workoutId) {
   return {
     type: GET_WORKOUT_BY_ID_RESPONSE,
-    payload: null // await get scheduled workout
+    payload: await WorkoutsService.getWorkout(workoutId)
   };
 }
 
@@ -43,7 +43,7 @@ export function createWorkoutRequest(workout) {
 async function createWorkout(workout) {
   return {
     type: CREATE_WORKOUT_RESPONSE,
-    payload: null // await save scheduled workout
+    payload: await WorkoutsService.createWorkout(workout)
   }
 }
 
@@ -57,7 +57,7 @@ export function updateWorkoutRequest(workout) {
 async function updateWorkout(workout) {
   return {
     type: UPDATE_WORKOUT_RESPONSE,
-    payload: null // await update scheduled workout
+    payload: await WorkoutsService.updateWorkout(workout)
   };
 }
 
